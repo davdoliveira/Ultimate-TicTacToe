@@ -1,0 +1,223 @@
+/* Tamanho de cada casa; encolhe automaticamente em ecrãs pequenos. */
+:root {
+  --sq: clamp(22px, calc((100vw - 110px) / 9), 50px);
+  --sq-font: clamp(11px, calc((100vw - 110px) / 18), 25px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 0;
+  background-color: #5b6d5c;
+  color: #ffffff;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 20px 24px 80px; /* espaço em baixo para o rodapé fixo não tapar o jogo */
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.header {
+  margin-bottom: 20px;
+}
+
+.title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 10px 24px;
+  color: #ffffff;
+  font-size: clamp(24px, 7vw, 42px);
+  border: 2px solid #ffffff;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* ---------- Layout do jogo ---------- */
+
+.game-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+/* Grelha 3x3 de tabuleiros */
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.game-row {
+  display: flex;
+  gap: 10px;
+}
+
+/* Tabuleiro pequeno 3x3 */
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 2px;
+  border: 2px solid #25302661;
+  border-radius: 4px;
+}
+
+.board-row {
+  display: flex;
+  gap: 2px;
+}
+
+/* ---------- Casas ---------- */
+
+.square {
+  width: var(--sq);
+  height: var(--sq);
+  padding: 0;
+  background: #9fc4aa92;
+  border: 2px solid #adbeb39b;
+  font-family: inherit;
+  font-size: var(--sq-font);
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  color: #ffffff;
+  cursor: default;
+}
+
+.square.x {
+  color: #000000;
+}
+
+.square.o {
+  color: #ffffff;
+}
+
+/* Tabuleiro onde o jogador da vez pode jogar */
+.square.next-move {
+  background-color: #95b657c9;
+}
+
+.square.next-move:not(.x):not(.o) {
+  cursor: pointer;
+}
+
+.square.next-move:not(.x):not(.o):hover {
+  background-color: #a9cc66;
+}
+
+/* Tabuleiro ganho */
+.square.won-x {
+  background: #808080;
+}
+
+.square.won-o {
+  background: #c06803;
+}
+
+/* Tabuleiro empatado */
+.square.draw {
+  background: #435044a8;
+}
+
+/* ---------- Painel de informação ---------- */
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 340px;
+}
+
+.status {
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.hint {
+  font-size: 18px;
+  color: #e3ebe4;
+}
+
+/* ---------- Ecrã inicial ---------- */
+
+.player-names {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.player-names input {
+  padding: 10px;
+  margin-bottom: 12px;
+  width: 200px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.player-names input::placeholder {
+  color: #6d6d6d99;
+}
+
+/* ---------- Botões ---------- */
+
+.btn {
+  padding: 11px 22px;
+  background-color: #48903b;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+/* ---------- Rodapé ---------- */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #939693;
+  padding: 10px;
+  text-align: center;
+}
+
+.footer a {
+  color: #1d261e;
+}
+
+@media (max-width: 560px) {
+  .app {
+    padding: 14px 12px 72px;
+  }
+
+  .game-container {
+    gap: 20px;
+  }
+
+  .game,
+  .game-row {
+    gap: 6px;
+  }
+
+  .status {
+    font-size: 22px;
+  }
+}
